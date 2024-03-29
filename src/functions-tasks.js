@@ -17,10 +17,9 @@
  *   getCurrentFunctionName() => 'getCurrentFunctionName'
  *
  */
-function getCurrentFunctionName() {
-  throw new Error('Not implemented');
-}
-
+const getCurrentFunctionName = () => {
+  return getCurrentFunctionName.name;
+};
 /**
  * Returns the body of the function passed as argument.
  *
