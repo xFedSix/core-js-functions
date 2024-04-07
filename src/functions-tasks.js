@@ -89,8 +89,31 @@ function getPowerFunction(exponent) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
-  throw new Error('Not implemented');
+/**
+ * Returns the polynomial function of one argument based on specified coefficients.
+ * The coefficients are used to create a polynomial of the form ax^n + bx^(n-1) + ... + z,
+ * where a, b, ..., z are the coefficients provided as arguments, and n is the degree of the polynomial.
+ *
+ * @param {...number} coefficients - The coefficients of the polynomial.
+ * @return {Function|null} A function that calculates the value of the polynomial for a given x.
+ *                         Returns null if no coefficients are provided.
+ *
+ * @example
+ *   const poly2_3_5 = getPolynom(2, 3, 5); // Creates a polynomial 2x^2 + 3x + 5
+ *   poly2_3_5(1); // => 10 (2*1^2 + 3*1 + 5)
+ *   const poly1_neg3 = getPolynom(1, -3); // Creates a polynomial x - 3
+ *   poly1_neg3(4); // => 1 (1*4 - 3)
+ *   const poly8 = getPolynom(8); // Creates a constant polynomial 8
+ *   poly8(0); // => 8
+ *   getPolynom(); // => null, no polynomial can be created without coefficients
+ */
+function getPolynom(...coefficients) {
+  if (coefficients.length === 0) return null;
+  return (x) => {
+    return coefficients.reduce((acc, curr, index) => {
+      return acc + curr * x ** (coefficients.length - 1 - index);
+    }, 0);
+  };
 }
 
 /**
